@@ -7,9 +7,7 @@
       </div>
 
       <div class="row row-cards row-deck">
-        
-        <ProdutoCard />
-      
+        <produto-card v-bind:data="produto" v-for="produto in produtos" v-bind:key="produto.id"></produto-card>
       </div>
 
     </div>
@@ -17,6 +15,7 @@
 
 <script>
 import ProdutoCard from '@/components/produtos/Card'
+import { request } from '@/helpers/Http'
 
 export default {
   name: 'Produtos',
@@ -27,24 +26,16 @@ export default {
       loading: true
     }
   },
-  computed: {
-    image: function(){
-      return require('@/assets/images/photos/david-klaasen-54203-500.jpg')
-    }  
-  },
   methods: {
-    /*listar: function() {
-      get('produtos')
+    listar: function() {
+      request('produtos')
         .then(response => response.data)
-        .then(response => {
-          this.produtos = response.data
-          this.loading = false
-        })
+        .then(response => this.produtos = response.data)
         .catch(error => console.log(error))
-    }*/
+    }
   },
   created: function(){
-    // this.listar()
+    this.listar()
   },
   components: {
     ProdutoCard
