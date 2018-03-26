@@ -6,12 +6,21 @@
       </h1>
     </div>
 
-    <div class="row row-cards row-deck">
-      <div class="col-md-12 text-center">
-        <pulse-loader :loading="loading"></pulse-loader>
+    <div class="row">
+      <div class="col-sm-3">
+        <categorias />
       </div>
       
-      <produto-card v-bind:data="produto" v-for="produto in produtos" v-bind:key="produto.id"></produto-card>
+      <div  class="col-sm-9">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <pulse-loader :loading="loading"></pulse-loader>
+          </div>
+          <div class="col-sm-4" v-for="produto in produtos" v-bind:key="produto.id">
+            <produto-card v-bind:data="produto"></produto-card>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +28,7 @@
 <script>
 import ProdutoCard from '@/components/produtos/Card'
 import PulseLoader from 'vue-spinner/src/Pulseloader.vue'
+import Categorias from '@/components/produtos/Categorias'
 import { HTTP } from '@/helpers/http-common'
 
 export default {
@@ -46,7 +56,8 @@ export default {
   },
   components: {
     ProdutoCard,
-    PulseLoader
+    PulseLoader,
+    Categorias
   }
 }
 </script>
