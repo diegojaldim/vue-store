@@ -85,11 +85,10 @@
                     <router-link to="/" class="nav-link"><i class="fe fe-home"></i> Home</router-link>
                   </li>
                   <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link"><i class="fe fe-box"></i> Produtos</a>
-                    <div class="nav-submenu nav">
-                      <router-link to="/produtos" class="nav-item">Lista de produtos</router-link>
-                      <a href="#" class="nav-item ">Importar produtos</a>
-                    </div>
+                    <router-link to="/produtos" class="nav-link"><i class="fe fe-box"></i> Produtos</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link to="/carrinho" class="nav-link"><i class="fe fe-shopping-cart"></i> Carrinho</router-link>
                   </li>
                 </ul>
               </div>
@@ -108,6 +107,7 @@
           <div class="container">
             <div class="row">
               <router-view/>
+              <notifications/>
             </div>
           </div>
         </div>

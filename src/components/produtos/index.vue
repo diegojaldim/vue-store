@@ -1,21 +1,25 @@
 <template>
-    <div>
-      <div class="page-header">
-        <h1 class="page-title">
-          Produtos
-        </h1>
-      </div>
-
-      <div class="row row-cards row-deck">
-        <produto-card v-bind:data="produto" v-for="produto in produtos" v-bind:key="produto.id"></produto-card>
-      </div>
-
+  <div class="col-md-12">
+    <div class="page-header">
+      <h1 class="page-title">
+        Produtos
+      </h1>
     </div>
+
+    <div class="row row-cards row-deck">
+      <div class="col-md-12 text-center">
+        <pulse-loader :loading="loading"></pulse-loader>
+      </div>
+      
+      <produto-card v-bind:data="produto" v-for="produto in produtos" v-bind:key="produto.id"></produto-card>
+    </div>
+  </div>
 </template>
 
 <script>
 import ProdutoCard from '@/components/produtos/Card'
-import { request } from '@/helpers/Http'
+import PulseLoader from 'vue-spinner/src/Pulseloader.vue'
+import { HTTP } from '@/helpers/http-common'
 
 export default {
   name: 'Produtos',
@@ -28,17 +32,26 @@ export default {
   },
   methods: {
     listar: function() {
-      request('produtos')
+      HTTP.get('produtos')
         .then(response => response.data)
-        .then(response => this.produtos = response.data)
+        .then(response => {
+          this.produtos = response.data
+          this.loading = false
+        })
         .catch(error => console.log(error))
     }
   },
   created: function(){
     this.listar()
+    this.$notify({
+      group: 'foo',
+  title: 'Important message',
+  text: 'Hello user! This is a notification!'
+    })
   },
   components: {
-    ProdutoCard
+    ProdutoCard,
+    PulseLoader
   }
 }
 </script>

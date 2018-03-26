@@ -10,7 +10,8 @@
             <a href="javascript:void(0)" class="text-default">R$ {{data.preco}}</a>
           </div>
           <div class="ml-auto text-muted">
-            <button class="btn btn-sm btn-primary" title="Adicionar produto ao carrinho" v-on:click="add" >
+            <pulse-loader :loading="loading.button"></pulse-loader>
+            <button v-if="!loading.button" class="btn btn-success" title="Adicionar produto ao carrinho" v-on:click="add" >
               <i class="fe fe-shopping-cart mr-1"></i>
             </button>
           </div>
@@ -21,12 +22,17 @@
 </template>
 
 <script>
+import { HTTP } from '@/helpers/http-common'
+import PulseLoader from 'vue-spinner/src/Pulseloader.vue'
+
 export default {
   name: 'ProdutoCard',
   props: ['data'],
   data () {
     return {
-
+      loading: {
+        button: false
+      }
     }
   },
   computed: {
@@ -40,11 +46,24 @@ export default {
   },
   methods: {
     add: function(){
-      console.log('Inserir produto no carrinho de compras')
+      this.loading.button = true
+      HTTP.post('carts', {
+        id: this.data.id,
+        name: this.data.nome,
+        price: this.data.preco,
+        quantity: 1
+      })
+      .then(response => {
+        this.loading.button = false
+        if(response.data.success){
+          this.$notify('Produto adicionado com sucesso!')  
+        }
+      })
+      .catch(error => console.log(error))
     }
   },
-  created: function(){
-    // console.log(this.data)
+  components: {
+    PulseLoader
   }
 }
 </script>
