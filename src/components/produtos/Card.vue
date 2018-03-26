@@ -1,7 +1,9 @@
 <template>
   <div class="col-sm-3">
     <div class="card">
-      <a href="#"><img class="card-img-top" :src="data.imagem" v-bind:alt="data.nome"></a>
+      <a href="#">
+        <div class="imagem-produto" :style="background" ></div>
+      </a>
       <div class="card-body d-flex flex-column">
         <h4><a href="#">{{data.nome}}</a></h4>
         <div class="text-muted">{{ categorias }}</div>
@@ -36,15 +38,19 @@ export default {
     }
   },
   computed: {
-      categorias: function(){
-        let string = ''
-        this.data.categorias.map(item => {
-          string += `- ${item.nome}`
-        })
-        return string
-      }
+    categorias: function(){
+      let string = ''
+      this.data.categorias.map(item => {
+        string += `- ${item.nome}`
+      })
+      return string
+    },
+    background: function(){
+      return  `background-image: url('${this.data.imagem}')`
+    }
   },
   methods: {
+    
     add: function(){
       this.loading.button = true
       HTTP.post('carts', {
@@ -67,3 +73,24 @@ export default {
   }
 }
 </script>
+
+<style scopped>
+  .imagem-produto{
+    border: 1px solid #fff;
+    height: 180px;
+    background-position: center;
+    background-size: cover;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+

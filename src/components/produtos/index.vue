@@ -43,11 +43,6 @@ export default {
   },
   created: function(){
     this.listar()
-    this.$notify({
-      group: 'foo',
-  title: 'Important message',
-  text: 'Hello user! This is a notification!'
-    })
   },
   components: {
     ProdutoCard,

@@ -8,6 +8,8 @@ import VueLodash from 'vue-lodash'
 import Home from '@/components/home'
 import Produtos from '@/components/produtos'
 import Carrinho from '@/components/carrinho'
+import Checkout from '@/components/checkout'
+import Pedidos from '@/components/pedidos'
 
 require('@/assets/css/dashboard.css')
 
@@ -20,18 +22,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
       component: Home
     },
     {
       path: '/produtos',
-      name: 'Produtos',
       component: Produtos
     },
     {
       path: '/carrinho',
-      name: 'Carrinho',
       component: Carrinho
     },
+    {
+      path: '/checkout',
+      component: Checkout
+    },
+    {
+      path: '/pedidos',
+      component: Pedidos
+    }
   ]
 })

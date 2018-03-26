@@ -90,6 +90,9 @@
                   <li class="nav-item">
                     <router-link to="/carrinho" class="nav-link"><i class="fe fe-shopping-cart"></i> Carrinho</router-link>
                   </li>
+                  <li class="nav-item">
+                    <router-link to="/pedidos" class="nav-link"><i class="fe fe-list"></i> Pedidos</router-link>
+                  </li>
                 </ul>
               </div>
               <div class="col-3 ml-auto">
@@ -105,10 +108,8 @@
         </div>
         <div id="app" class="page-content">
           <div class="container">
-            <div class="row">
-              <router-view/>
-              <notifications/>
-            </div>
+            <router-view/>
+            <notifications/>
           </div>
         </div>
       </div>
