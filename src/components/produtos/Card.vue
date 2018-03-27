@@ -1,14 +1,14 @@
 <template>
   <div class="card">
-    <a href="#">
+    <router-link :to="to">
       <div class="imagem-produto" :style="background" ></div>
-    </a>
+    </router-link>
     <div class="card-body">
-      <h4><a href="#">{{data.nome}}</a></h4>
+      <h4><router-link :to="to">{{data.nome}}</router-link></h4>
       <div class="text-muted">{{ categorias }}</div>
       <div class="d-flex align-items-center pt-5 mt-auto">
         <div>
-          <a href="javascript:void(0)" class="text-default">R$ {{data.preco}}</a>
+          R$ {{data.preco}}
         </div>
         <div class="ml-auto text-muted">
           <pulse-loader :loading="loading.button"></pulse-loader>
@@ -23,6 +23,7 @@
 
 <script>
 import { HTTP } from '@/helpers/http-common'
+import { categoriasLista, add } from '@/helpers/produtos'
 import PulseLoader from 'vue-spinner/src/Pulseloader.vue'
 
 export default {
@@ -37,27 +38,25 @@ export default {
   },
   computed: {
     categorias: function(){
-      let string = ''
-      this.data.categorias.map(item => {
-        string += `- ${item.nome}`
-      })
-      return string
+      return categoriasLista(this.data.categorias)
     },
     background: function(){
       return  `background-image: url('${this.data.imagem}')`
+    },
+    to: function(){
+      return `produtos/${this.data.id}`
     }
   },
   methods: {
     
     add: function(){
       this.loading.button = true
-      HTTP.post('carts', {
+      add({
         id: this.data.id,
-        name: this.data.nome,
-        price: this.data.preco,
-        quantity: 1
-      })
-      .then(response => {
+        nome: this.data.nome,
+        preco: this.data.preco,
+        quantidade: 1
+      }).then(response => {
         this.loading.button = false
         if(response.data.success){
           this.$notify('Produto adicionado com sucesso!')  

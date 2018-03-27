@@ -10,6 +10,7 @@ import Produtos from '@/components/produtos'
 import Carrinho from '@/components/carrinho'
 import Checkout from '@/components/checkout'
 import Pedidos from '@/components/pedidos'
+import ProdutoDetalhes from '@/components/produtos/Detalhes'
 
 require('@/assets/css/dashboard.css')
 
@@ -27,6 +28,10 @@ export default new Router({
     {
       path: '/produtos',
       component: Produtos
+    },
+    {
+      path: '/produtos/:id',
+      component: ProdutoDetalhes
     },
     {
       path: '/carrinho',
