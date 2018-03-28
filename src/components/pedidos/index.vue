@@ -13,6 +13,7 @@
                 <th>ID</th>
                 <th>Endereço de entrega</th>
                 <th>Status de pagamento</th>
+                <th>Total</th>
                 <th></th>
               </tr>
             </thead>
@@ -21,6 +22,7 @@
                 <td>{{item.id}}</td>
                 <td>{{item.endereco_entrega}}</td>
                 <td>{{item.status.nome}}</td>
+                <td>R$ {{item.total}}</td>
                 <td>
                   <router-link :to="to(item.id)" class="btn btn-primary" title="Detalhes do pedido"><i class="fe fe-info"></i></router-link>
                 </td>

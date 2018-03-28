@@ -1,9 +1,20 @@
 <template>
-  <div class="col-md-12">
-    <div class="page-header">
-      <h1 class="page-title">
-        Produtos
-      </h1>
+  <div>
+    
+    <div class="row" style="margin-bottom:25px;">
+      <div class="col-lg-8">  
+        <h1 class="page-title">Produtos</h1>
+      </div>
+      <div class="col-lg-4">
+        <form v-on:submit.prevent="listar">
+          <div class="input-group">
+            <input type="text" class="form-control" v-model="busca" placeholder="Digite o nome do produto..." >
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit"><i class="fe fe-search"></i> Buscar</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
 
     <div class="row">
@@ -37,12 +48,16 @@ export default {
     return {
       title: 'Produtos',
       produtos: [],
-      loading: true
+      loading: true,
+      busca: ''
     }
   },
   methods: {
     listar: function() {
-      HTTP.get('produtos')
+      this.produtos = []
+      this.loading = true
+      const busca = this.busca
+      HTTP.get(`produtos?search=${busca}`)
         .then(response => response.data)
         .then(response => {
           this.produtos = response.data

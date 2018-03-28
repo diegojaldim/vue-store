@@ -13,7 +13,7 @@
 
             <p>Status: {{info.status.nome}}</p>
             <p>Endereço de entrega: {{info.endereco_entrega}}</p>
-            <p>Total: R$ 120,00</p>
+            <p>Total: R$ {{info.total}}</p>
             <hr>
             <p>Produtos</p>
             <table class="table">
