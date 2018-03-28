@@ -21,7 +21,9 @@
                 <td>{{item.id}}</td>
                 <td>{{item.endereco_entrega}}</td>
                 <td>{{item.status.nome}}</td>
-                <td><button class="btn btn-primary" title="Clique p/ ver mais detalhes do pedido"><i class="fe fe-info"></i></button></td>
+                <td>
+                  <router-link :to="to(item.id)" class="btn btn-primary" title="Detalhes do pedido"><i class="fe fe-info"></i></router-link>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -52,6 +54,9 @@ export default {
           this.loading = false
         })
         .catch(error => console.log(error))
+    },
+    to: function(id){
+      return `/pedidos/${id}`
     }
   },
   created: function(){
