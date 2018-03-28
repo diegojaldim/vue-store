@@ -13,6 +13,7 @@ import Checkout from '@/components/checkout'
 import Pedidos from '@/components/pedidos'
 import ProdutoDetalhes from '@/components/produtos/Detalhes'
 import PedidosDetalhes from '@/components/pedidos/Detalhes'
+import Registro from '@/components/registro'
 
 require('@/assets/css/dashboard.css')
 
@@ -27,6 +28,11 @@ const router = new VueRouter({
       path: '/login',
       component: Login,
       name: 'login'
+    },
+    {
+      path: '/registro',
+      component: Registro,
+      name: 'registro'
     },
     {
       path: '/',
@@ -76,7 +82,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if(to.meta.requiresAuth){
     const token = localStorage.getItem('token')
-    console.log(token)
     
     if(!token){
       next({
