@@ -1,21 +1,17 @@
-# vue-store
+# Vue.js Store
+Loja desenvolvida em Vue.js para consumo da API do projeto 'store-api-core'
+Os dois serviços devem estar rodando localmente para o uso e teste 
 
-> A Vue.js project
+## Instalação
 
-## Build Setup
+- git clone https://github.com/diegojaldim/vue-store.git
+- navegue até a pasta do projeto
+- npm install
+- npm run dev
+- Pronto. Agora você pode acessar o sistema no http://localhost:8080
 
-``` bash
-# install dependencies
-npm install
+## Uso do sistema
+Crie um usuário para poder realizar os teste do sistema
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Observação
+O projeto 'store-api-core' deve estar rodando no http://localhost:8000
